@@ -1,0 +1,119 @@
+:root {
+  --dice-size: 150px;
+  --dice-color: #f59e0b;
+  --dice-hover: #d97706;
+  --bg-color: #1e293b;
+  --text-color: #f8fafc;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+main {
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #f59e0b, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  color: #94a3b8;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.dice {
+  width: var(--dice-size);
+  height: var(--dice-size);
+  background: linear-gradient(135deg, var(--dice-color), #fbbf24);
+  border-radius: 20px;
+  margin: 0 auto 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  font-weight: bold;
+  color: #1e293b;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
+              inset 0 -5px 20px rgba(0, 0, 0, 0.2),
+              inset 0 5px 20px rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dice:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 40px rgba(245, 158, 11, 0.4),
+              inset 0 -5px 20px rgba(0, 0, 0, 0.2),
+              inset 0 5px 20px rgba(255, 255, 255, 0.2);
+}
+
+.result {
+  animation: pop 0.3s ease;
+}
+
+.placeholder {
+  color: rgba(30, 41, 59, 0.3);
+}
+
+button {
+  padding: 1rem 2.5rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(139, 92, 246, 0.4);
+}
+
+button:hover:not(.disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5);
+}
+
+button:active:not(.disabled) {
+  transform: translateY(0);
+}
+
+button.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.result-message {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: rgba(245, 158, 11, 0.1);
+  border-radius: 12px;
+  animation: fadeSlide 0.5s ease;
+}
+
+.result-message p {
+  font-size: 1.5rem;
+  color: #f59e0b;
+}
