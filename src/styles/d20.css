@@ -1,6 +1,4 @@
 :root {
-  --dice-size: 120px;
-  --dice-color: #f59e0b;
   --bg-color: #1e293b;
   --text-color: #f8fafc;
 }
@@ -46,111 +44,63 @@ h1 span {
   margin-bottom: 2rem;
 }
 
-/* D20 Dice Container */
+/* D20 Dice */
 .dice-container {
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   margin: 2rem auto;
-  perspective: 600px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.dice-container:hover {
+  transform: scale(1.05);
 }
 
 .d20 {
   width: 100%;
   height: 100%;
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 1s ease-out;
 }
-
-/* Icosahedron geometry constants */
-/* Golden ratio φ = 1.618 */
-/* Edge length relative to container */
-
-.face {
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-left: 55px solid transparent;
-  border-right: 55px solid transparent;
-  border-bottom: 95px solid;
-  transform-origin: center;
-  left: 50%;
-  top: 50%;
-  margin-left: -55px;
-  margin-top: -47px;
-}
-
-.face span {
-  position: absolute;
-  top: 30px;
-  left: -15px;
-  width: 30px;
-  text-align: center;
-  font-weight: bold;
-  font-size: 1.1rem;
-  color: #1e293b;
-  text-shadow: 0 1px 1px rgba(255,255,255,0.3);
-}
-
-/* Color the faces with gradient effect */
-.face-1 { border-bottom-color: #f59e0b; transform: rotateY(0deg) rotateX(37.38deg) translateZ(70px); }
-.face-2 { border-bottom-color: #f5a623; transform: rotateY(72deg) rotateX(37.38deg) translateZ(70px); }
-.face-3 { border-bottom-color: #f5af3d; transform: rotateY(144deg) rotateX(37.38deg) translateZ(70px); }
-.face-4 { border-bottom-color: #f5b957; transform: rotateY(216deg) rotateX(37.38deg) translateZ(70px); }
-.face-5 { border-bottom-color: #f5c270; transform: rotateY(288deg) rotateX(37.38deg) translateZ(70px); }
-
-.face-6 { border-bottom-color: #e8940a; transform: rotateY(36deg) rotateX(79.19deg) translateZ(70px); }
-.face-7 { border-bottom-color: #db8a09; transform: rotateY(108deg) rotateX(79.19deg) translateZ(70px); }
-.face-8 { border-bottom-color: #ce8108; transform: rotateY(180deg) rotateX(79.19deg) translateZ(70px); }
-.face-9 { border-bottom-color: #c17707; transform: rotateY(252deg) rotateX(79.19deg) translateZ(70px); }
-.face-10 { border-bottom-color: #b46e06; transform: rotateY(324deg) rotateX(79.19deg) translateZ(70px); }
-
-.face-11 { border-bottom-color: #fbbf24; transform: rotateY(0deg) rotateX(-37.38deg) rotateZ(180deg) translateZ(70px); }
-.face-12 { border-bottom-color: #fbc63e; transform: rotateY(72deg) rotateX(-37.38deg) rotateZ(180deg) translateZ(70px); }
-.face-13 { border-bottom-color: #fbcd58; transform: rotateY(144deg) rotateX(-37.38deg) rotateZ(180deg) translateZ(70px); }
-.face-14 { border-bottom-color: #fbd472; transform: rotateY(216deg) rotateX(-37.38deg) rotateZ(180deg) translateZ(70px); }
-.face-15 { border-bottom-color: #fbdb8c; transform: rotateY(288deg) rotateX(-37.38deg) rotateZ(180deg) translateZ(70px); }
-
-.face-16 { border-bottom-color: #d97706; transform: rotateY(36deg) rotateX(-79.19deg) rotateZ(180deg) translateZ(70px); }
-.face-17 { border-bottom-color: #cc7005; transform: rotateY(108deg) rotateX(-79.19deg) rotateZ(180deg) translateZ(70px); }
-.face-18 { border-bottom-color: #bf6904; transform: rotateY(180deg) rotateX(-79.19deg) rotateZ(180deg) translateZ(70px); }
-.face-19 { border-bottom-color: #b26203; transform: rotateY(252deg) rotateX(-79.19deg) rotateZ(180deg) translateZ(70px); }
-.face-20 { border-bottom-color: #a55b02; transform: rotateY(324deg) rotateX(-79.19deg) rotateZ(180deg) translateZ(70px); }
-
-/* Show specific face */
-.show-1 { transform: rotateX(-37.38deg) rotateY(0deg); }
-.show-2 { transform: rotateX(-37.38deg) rotateY(-72deg); }
-.show-3 { transform: rotateX(-37.38deg) rotateY(-144deg); }
-.show-4 { transform: rotateX(-37.38deg) rotateY(-216deg); }
-.show-5 { transform: rotateX(-37.38deg) rotateY(-288deg); }
-.show-6 { transform: rotateX(-79.19deg) rotateY(-36deg); }
-.show-7 { transform: rotateX(-79.19deg) rotateY(-108deg); }
-.show-8 { transform: rotateX(-79.19deg) rotateY(-180deg); }
-.show-9 { transform: rotateX(-79.19deg) rotateY(-252deg); }
-.show-10 { transform: rotateX(-79.19deg) rotateY(-324deg); }
-.show-11 { transform: rotateX(37.38deg) rotateY(0deg) rotateZ(180deg); }
-.show-12 { transform: rotateX(37.38deg) rotateY(-72deg) rotateZ(180deg); }
-.show-13 { transform: rotateX(37.38deg) rotateY(-144deg) rotateZ(180deg); }
-.show-14 { transform: rotateX(37.38deg) rotateY(-216deg) rotateZ(180deg); }
-.show-15 { transform: rotateX(37.38deg) rotateY(-288deg) rotateZ(180deg); }
-.show-16 { transform: rotateX(79.19deg) rotateY(-36deg) rotateZ(180deg); }
-.show-17 { transform: rotateX(79.19deg) rotateY(-108deg) rotateZ(180deg); }
-.show-18 { transform: rotateX(79.19deg) rotateY(-180deg) rotateZ(180deg); }
-.show-19 { transform: rotateX(79.19deg) rotateY(-252deg) rotateZ(180deg); }
-.show-20 { transform: rotateX(79.19deg) rotateY(-324deg) rotateZ(180deg); }
 
 /* Rolling animation */
-.rolling {
-  animation: roll 2s ease-in-out;
+.dice-container.rolling {
+  animation: tumble 2s ease-in-out;
 }
 
-@keyframes roll {
-  0% { transform: rotateX(0) rotateY(0) rotateZ(0); }
-  20% { transform: rotateX(360deg) rotateY(180deg) rotateZ(90deg); }
-  40% { transform: rotateX(720deg) rotateY(360deg) rotateZ(180deg); }
-  60% { transform: rotateX(1080deg) rotateY(540deg) rotateZ(270deg); }
-  80% { transform: rotateX(1440deg) rotateY(720deg) rotateZ(360deg); }
-  100% { transform: rotateX(1800deg) rotateY(900deg) rotateZ(450deg); }
+@keyframes tumble {
+  0% { 
+    transform: rotate(0deg) scale(1); 
+  }
+  10% { 
+    transform: rotate(36deg) scale(1.1) translateY(-10px); 
+  }
+  20% { 
+    transform: rotate(-30deg) scale(0.95) translateY(5px); 
+  }
+  30% { 
+    transform: rotate(72deg) scale(1.15) translateY(-15px); 
+  }
+  40% { 
+    transform: rotate(-45deg) scale(0.9) translateY(10px); 
+  }
+  50% { 
+    transform: rotate(108deg) scale(1.2) translateY(-20px); 
+  }
+  60% { 
+    transform: rotate(-60deg) scale(0.95) translateY(5px); 
+  }
+  70% { 
+    transform: rotate(144deg) scale(1.1) translateY(-10px); 
+  }
+  80% { 
+    transform: rotate(-30deg) scale(1.05) translateY(0); 
+  }
+  90% { 
+    transform: rotate(15deg) scale(1.02); 
+  }
+  100% { 
+    transform: rotate(0deg) scale(1); 
+  }
 }
 
 button {

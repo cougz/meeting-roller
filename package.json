@@ -7,7 +7,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy": "astro build && wrangler pages deploy dist --project-name meeting-roller"
+    "deploy": "astro build && wrangler pages deploy dist --project-name meeting-roller --branch production"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.5.0",
