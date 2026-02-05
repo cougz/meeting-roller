@@ -6,9 +6,11 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "deploy": "astro build && wrangler pages deploy dist --project-name meeting-roller"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^12.5.0",
     "astro": "^5.17.1"
   }
 }
