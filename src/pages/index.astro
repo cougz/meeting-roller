@@ -14,22 +14,66 @@ import '../styles/animations.css';
     <h1>🎲 <span>Who's Next?</span></h1>
     <p class="subtitle">Roll the d20 to select the next presenter</p>
 
-    <div class="dice" id="dice">
-      <span class="placeholder">?</span>
+    <div class="dice-container">
+      <div class="d20" id="dice">
+        <div class="face face-1"><span>1</span></div>
+        <div class="face face-2"><span>2</span></div>
+        <div class="face face-3"><span>3</span></div>
+        <div class="face face-4"><span>4</span></div>
+        <div class="face face-5"><span>5</span></div>
+        <div class="face face-6"><span>6</span></div>
+        <div class="face face-7"><span>7</span></div>
+        <div class="face face-8"><span>8</span></div>
+        <div class="face face-9"><span>9</span></div>
+        <div class="face face-10"><span>10</span></div>
+        <div class="face face-11"><span>11</span></div>
+        <div class="face face-12"><span>12</span></div>
+        <div class="face face-13"><span>13</span></div>
+        <div class="face face-14"><span>14</span></div>
+        <div class="face face-15"><span>15</span></div>
+        <div class="face face-16"><span>16</span></div>
+        <div class="face face-17"><span>17</span></div>
+        <div class="face face-18"><span>18</span></div>
+        <div class="face face-19"><span>19</span></div>
+        <div class="face face-20"><span>20</span></div>
+      </div>
     </div>
 
     <button id="rollBtn">Roll the Dice!</button>
 
     <div class="result-message" id="resultMessage" style="display: none;">
-      <p>Presenter #<span id="presenterNum"></span> is up!</p>
+      <p><span id="presenterName"></span> is up!</p>
     </div>
   </main>
 
   <script>
+    const PRESENTERS = [
+      "Alice Johnson",
+      "Bob Smith", 
+      "Charlie Davis",
+      "Diana Chen",
+      "Evan Williams",
+      "Fiona Garcia",
+      "George Miller",
+      "Hannah Lee",
+      "Ivan Petrov",
+      "Julia Martinez",
+      "Kevin Brown",
+      "Laura Wilson",
+      "Michael Taylor",
+      "Nina Anderson",
+      "Oscar Thomas",
+      "Paula Jackson",
+      "Quinn Harris",
+      "Rachel Clark",
+      "Sam Robinson",
+      "Tina Wright"
+    ];
+
     const dice = document.getElementById('dice');
     const rollBtn = document.getElementById('rollBtn');
     const resultMessage = document.getElementById('resultMessage');
-    const presenterNum = document.getElementById('presenterNum');
+    const presenterName = document.getElementById('presenterName');
     let rolling = false;
 
     rollBtn.addEventListener('click', () => {
@@ -38,20 +82,19 @@ import '../styles/animations.css';
       rolling = true;
       rollBtn.textContent = 'Rolling...';
       rollBtn.classList.add('disabled');
-      dice.classList.add('shake');
-      dice.innerHTML = '<span class="placeholder">?</span>';
+      dice.classList.add('rolling');
       resultMessage.style.display = 'none';
 
       setTimeout(() => {
         const result = Math.floor(Math.random() * 20) + 1;
-        dice.classList.remove('shake');
-        dice.innerHTML = `<span class="result">${result}</span>`;
-        presenterNum.textContent = result;
+        dice.classList.remove('rolling');
+        dice.className = 'd20 show-' + result;
+        presenterName.textContent = PRESENTERS[result - 1];
         resultMessage.style.display = 'block';
         rollBtn.textContent = 'Roll the Dice!';
         rollBtn.classList.remove('disabled');
         rolling = false;
-      }, 1500);
+      }, 2000);
     });
   </script>
 </body>
