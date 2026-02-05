@@ -1,22 +1,6 @@
 ---
 import '../styles/d20.css';
 import '../styles/animations.css';
-
-let rolling = false;
-let result = null;
-let animationClass = '';
-
-function rollDice() {
-  rolling = true;
-  result = null;
-  animationClass = 'shake';
-
-  setTimeout(() => {
-    result = Math.floor(Math.random() * 20) + 1;
-    animationClass = '';
-    rolling = false;
-  }, 1500);
-}
 ---
 
 <html lang="en">
@@ -27,22 +11,48 @@ function rollDice() {
 </head>
 <body>
   <main>
-    <h1>🎲 Who's Next?</h1>
+    <h1>🎲 <span>Who's Next?</span></h1>
     <p class="subtitle">Roll the d20 to select the next presenter</p>
 
-    <div class={`dice ${animationClass}`} id="dice">
-      {result ? <span class="result">{result}</span> : <span class="placeholder">?</span>}
+    <div class="dice" id="dice">
+      <span class="placeholder">?</span>
     </div>
 
-    <button disabled={rolling} onclick={rollDice} class:disabled={rolling}>
-      {rolling ? 'Rolling...' : 'Roll the Dice!'}
-    </button>
+    <button id="rollBtn">Roll the Dice!</button>
 
-    {result && (
-      <div class="result-message">
-        <p>Presenter #{result} is up!</p>
-      </div>
-    )}
+    <div class="result-message" id="resultMessage" style="display: none;">
+      <p>Presenter #<span id="presenterNum"></span> is up!</p>
+    </div>
   </main>
+
+  <script>
+    const dice = document.getElementById('dice');
+    const rollBtn = document.getElementById('rollBtn');
+    const resultMessage = document.getElementById('resultMessage');
+    const presenterNum = document.getElementById('presenterNum');
+    let rolling = false;
+
+    rollBtn.addEventListener('click', () => {
+      if (rolling) return;
+      
+      rolling = true;
+      rollBtn.textContent = 'Rolling...';
+      rollBtn.classList.add('disabled');
+      dice.classList.add('shake');
+      dice.innerHTML = '<span class="placeholder">?</span>';
+      resultMessage.style.display = 'none';
+
+      setTimeout(() => {
+        const result = Math.floor(Math.random() * 20) + 1;
+        dice.classList.remove('shake');
+        dice.innerHTML = `<span class="result">${result}</span>`;
+        presenterNum.textContent = result;
+        resultMessage.style.display = 'block';
+        rollBtn.textContent = 'Roll the Dice!';
+        rollBtn.classList.remove('disabled');
+        rolling = false;
+      }, 1500);
+    });
+  </script>
 </body>
 </html>

@@ -32,6 +32,9 @@ main {
 h1 {
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
+}
+
+h1 span {
   background: linear-gradient(135deg, #f59e0b, #ec4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
